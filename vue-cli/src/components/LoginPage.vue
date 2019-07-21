@@ -1,22 +1,24 @@
 <template>
   <div id="loginForm">
-    <div @click="backPage()"><i class="fas fa-arrow-left"></i></div>
+    <div class="arrowBack" @click="backPage()"><i class="fas fa-arrow-left"></i></div>
+          <h1>Cityguide</h1>
+
     <form>
-  
-      <h1>Welcome back!</h1>
+
+      <h2>Welcome back!</h2>
       <div>
-        <div><i class="far fa-envelope"></i><input v-model="email" v-validate="'required|email'" type="text" placeholder="Email" name="email"></div>
+        <div><i class="far fa-envelope"></i><input v-model="email" v-validate="'required|email'" type="text" placeholder="Your email adress" name="email"></div>
         <p class="error" v-if="errors.has('email')">{{ errors.first('email') }}</p>
       </div>
       <div>
-        <div><i class="fas fa-lock"></i> <input v-model="password" type="password" placeholder="Password" name="password"></div>
+        <div><i class="fas fa-lock"></i> <input v-model="password" type="password" placeholder="Your password" name="password"></div>
         <p v-if="errors.has('password')">{{ errors.first('password') }}</p>
       </div>
   
-  
-      <button @click.prevent="validateBeforeSubmit">Login</button>
-      <button disabled="true">Facebook</button>
-  
+  <div class="wrapBtn">
+      <div class="btn whiteBtn" @click.prevent="validateBeforeSubmit">Login</div>
+      <div class="btn blueBtn" disabled="true">Facebook</div>
+  </div>
     </form>
   
   </div>

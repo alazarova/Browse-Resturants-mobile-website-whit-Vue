@@ -1,10 +1,8 @@
 <template>
     <div id="registerForm">
-        <div @click="backPage()"><i class="fas fa-arrow-left"></i></div>
-        <form>
-    
-            <h1>{{ label }}</h1>
-          
+        <div class="arrowBack" @click="backPage()"><i class="fas fa-arrow-left"></i></div>
+        <h3>{{ label }}</h3>
+        <form>          
             <div>
                 <div><i class="far fa-user"></i> <input v-model="name" v-validate="'decimal:3'" type="text" placeholder="Name" name="decimal_field"></div>
                 <p v-if="errors.has('name')">{{ errors.first('name') }}</p>
@@ -23,7 +21,9 @@
                         data-vv-as="password"></div>
                 <p v-show="errors.has('password_confirmation')" class="help is-danger">{{ errors.first('password_confirmation') }}</p>
             </div>
-            <button @click.prevent="validateBeforeSubmit">Register</button>
+            <div class="wrapBtn">
+            <div class="btn redBtn" @click.prevent="validateBeforeSubmit">Register</div>
+            </div>
         </form>
     
     </div>

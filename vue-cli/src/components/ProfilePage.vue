@@ -1,11 +1,13 @@
 <template>
     <div id="profilePage">
-        <div @click="backPage()"><i class="fas fa-arrow-left"></i></div>
-        <h1>Profile</h1>
+        <div class="arrowBack" @click="backPage()"><i class="fas fa-arrow-left"></i></div>
+        <h3>Profile</h3>
         <div>{{userObj.userName}}</div>
         <div>{{userObj.userEmail}}</div>
     
-        <button @click="editBtn()">Edit</button>
+    <div class="wrapBtn">
+        <button class="btn blueBtn" @click="editBtn()">Edit</button>
+        </div>
     
     </div>
 </template>

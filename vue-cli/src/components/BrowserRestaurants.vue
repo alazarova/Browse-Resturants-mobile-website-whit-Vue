@@ -1,8 +1,8 @@
 <template>
     <div id="browseRestaurants">
-        <div @click="editBtn()"><i class="far fa-user"></i></div>
+        <div class="profileIcon" @click="editBtn()"><i class="far fa-user"></i></div>
     
-        <h1>Browse Restaurants</h1>
+        <h3>Browse Restaurants</h3>
     </div>
 </template>
 <script>
@@ -37,4 +37,13 @@ export default {
     }
 }
 </script>
+<style>
+.profileIcon{
+      position: absolute;
+    right: 1em;
+    top: 1.5em;
+    cursor: pointer;
+}
+</style>
+
 

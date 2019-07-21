@@ -1,9 +1,12 @@
 <template>
     <div id="homePage">
-        <h1>CITYGUIDE</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        <button @click="clickLoginBtn()" type="submit">Login</button>
-        <button @click="clickRegisterBtn()" type="submit">Register</button>
+        <h1>Cityguide</h1>
+        <p> Explore the best places of the world's 
+most vibrant cities!</p>
+<div class="wrapBtn">
+        <div class="btn whiteBtn" @click="clickLoginBtn()" type="submit">Login</div>
+        <div class="btn blueBtn" @click="clickRegisterBtn()" type="submit">Register</div>
+        </div>
     </div>
 </template>
 
@@ -38,5 +41,7 @@ import {
 </script>
 
 <style>
-    
+  
+  
+   
 </style>
