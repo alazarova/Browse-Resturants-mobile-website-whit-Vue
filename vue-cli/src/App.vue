@@ -173,7 +173,6 @@
     cursor: pointer;
     font-weight: bold;
     transform: scale(1);
-    font-size: 1.2em;
   }
   
   .wrapBtn {
