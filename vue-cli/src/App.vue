@@ -168,6 +168,7 @@
     padding: 1em 0;
     margin: 0.5em 0;
     cursor: pointer;
+    transform: scale(1);
   }
   
   .wrapBtn {
@@ -186,6 +187,8 @@
   
   .whiteBtn:hover {
     background-color: #ddecf9;
+        transform: scale(0.95);
+
   }
   
   .blueBtn {
@@ -196,6 +199,8 @@
   
   .blueBtn:hover {
     background-color: #0079d8;
+            transform: scale(0.95);
+
   }
   
   .redBtn {
@@ -205,5 +210,7 @@
   
   .redBtn:hover {
     background-color: #f51403;
+            transform: scale(0.95);
+
   }
 </style>

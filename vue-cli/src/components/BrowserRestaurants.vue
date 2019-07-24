@@ -163,6 +163,7 @@
     
     .arrow {
         color: #2196f3;
+        cursor: pointer;
     }
 </style>
 
