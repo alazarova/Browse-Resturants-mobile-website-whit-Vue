@@ -1,14 +1,21 @@
 <template>
     <div id="profilePage">
-        <div class="arrowBack" @click="backPage()"><i class="fas fa-arrow-left"></i></div>
-        <h3>Profile</h3>
-        <div>{{userObj.userName}}</div>
-        <div>{{userObj.userEmail}}</div>
     
-    <div class="wrapBtn">
-        <button class="btn blueBtn" @click="editBtn()">Edit</button>
+        <div class="header">
+            <div class="arrowBack" @click="backPage()"><i class="fas fa-arrow-left"></i></div>
+            <h3>Profile</h3>
         </div>
     
+        <div class="container">
+            <div class="profileData">
+                <div><i class="far fa-user"></i> <span>{{userObj.userName}}</span></div>
+                <div><i class="far fa-envelope"></i> <span>{{userObj.userEmail}}</span></div>
+            </div>
+    
+            <div class="wrapBtn">
+                <div class="btn blueBtn" @click="editBtn()">Edit</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -26,22 +33,13 @@
     export default {
         props: {
             userObj: Object
-        },
-        data() {
-            return {
-          
-            }
+    
         },
         computed: {
             ...mapState({
                 openRegisterPage: state => state.openRegisterPage,
                 openBrowseRestaurants: state => state.openBrowseRestaurants,
                 openProfilePage: state => state.openProfilePage,
-    
-    
-    
-    
-    
             })
         },
         methods: {
@@ -49,7 +47,6 @@
                 setopenRegisterPage: ACTION_SET_OPEN_REGISTER_PAGE,
                 setopenBrowseRestaurants: ACTION_SET_BROWSE_RESTAURANTS,
                 setopenProfilePage: ACTION_SET_OPEN_PROFILE_PAGE
-    
             }),
     
             backPage() {
@@ -60,8 +57,28 @@
             editBtn() {
                 this.setopenRegisterPage(true);
                 this.setopenProfilePage(false);
-    
             }
         }
     }
 </script>
+
+<style>
+    .header {
+        align-items: flex-start;
+    }
+    
+    .profileData {
+        color: #b5b5b5;
+        text-align: left;
+        padding-top: 3em;
+    }
+    
+    .profileData div {
+        line-height: 5em;
+    }
+    
+    .profileData span {
+        color: #1e1e1e;
+    }
+</style>
+

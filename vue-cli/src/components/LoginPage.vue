@@ -1,39 +1,39 @@
 <template>
   <div id="loginForm">
-    <div class="arrowBack" @click="backPage()"><i class="fas fa-arrow-left"></i></div>
-          <h1>Cityguide</h1>
-
-    <form>
-
+  
+    <div class="header">
+      <div class="arrowBack" @click="backPage()"><i class="fas fa-arrow-left"></i></div>
+      <h1>Cityguide</h1>
+    </div>
+  
+    <div class="container">
       <h2>Welcome back!</h2>
-      <div>
-        <div><i class="far fa-envelope"></i><input v-model="email" v-validate="'required|email'" type="text" placeholder="Your email adress" name="email"></div>
+      <div class="inputWrap">
+  
+        <div class="input">
+          <i class="far fa-envelope"></i>
+          <input v-model="email" v-validate="'required|email'" name="email" type="text" placeholder="Your email adress">
+        </div>
         <p class="error" v-if="errors.has('email')">{{ errors.first('email') }}</p>
+  
+        <div class="input">
+          <i class="fas fa-lock"></i>
+          <input v-model="password" v-validate="'required'" name="password" type="password" placeholder="Your password" v-on:keyup.enter="validateBeforeSubmit">
+        </div>
+        <p class="help is-danger" v-show="errors.has('password')">{{ errors.first('password') }}</p>
       </div>
-      <div>
-        <div><i class="fas fa-lock"></i> <input v-model="password" type="password" placeholder="Your password" name="password"></div>
-        <p v-if="errors.has('password')">{{ errors.first('password') }}</p>
+      <div class="errorToastr" v-show="toastr">Invalid registration!</div>
+  
+      <div class="wrapBtn">
+        <div class="btn whiteBtn" @click.prevent="validateBeforeSubmit">Login</div>
+        <div class="btn blueBtn" disabled="true">Facebook</div>
       </div>
   
-  <div class="wrapBtn">
-      <div class="btn whiteBtn" @click.prevent="validateBeforeSubmit">Login</div>
-      <div class="btn blueBtn" disabled="true">Facebook</div>
-  </div>
-    </form>
-  
+    </div>
   </div>
 </template>
 
 <script>
-  // import Vue from 'vue'
-  // import VeeValidate from 'vee-validate';
-  
-  // Vue.use(VeeValidate);
-  
-  // VeeValidate.Validator.extend('passphrase', {
-  //     getMessage: field => 'Sorry dude, wrong pass phrase.',
-  //     validate: value => value.toUpperCase() == 'Demogorgon'.toUpperCase()
-  // });
   import {
     mapActions,
     mapState
@@ -48,32 +48,27 @@
       return {
         email: '',
         password: '',
+        toastr: false
       }
     },
     computed: {
       ...mapState({
         openLoginPage: state => state.openLoginPage,
         openBrowseRestaurants: state => state.openBrowseRestaurants,
-  
-  
       })
     },
     methods: {
       ...mapActions({
         setopenLoginPage: ACTION_SET_OPEN_LOGIN_PAGE,
         setopenBrowseRestaurants: ACTION_SET_BROWSE_RESTAURANTS,
-  
       }),
       validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
   
           if (result) {
-            // eslint-disable-next-line
-            alert('Form Submitted!');
             return this.submitForm();
           }
   
-          alert('Correct them errors!');
         });
       },
       backPage() {
@@ -84,68 +79,66 @@
         let userArr = localStorage.getItem("users");
         let users;
         if (userArr === null) {
-          alert("Nqma takava registraciq")
+          return this.toastr = true;
         } else {
           users = JSON.parse(userArr);
           const user = users.find(el => {
             return el.userEmail === this.email && el.userPassword === this.password;
           })
-        
+  
           if (user === undefined) {
-            alert("Nqma takava registraciq");
-            return;
+            return this.toastr = true;
           }
-            console.log(user);
           this.$emit('user-data', user);
           this.setopenLoginPage(false);
-          return this.setopenBrowseRestaurants(true);
+          this.setopenBrowseRestaurants(true);
         }
       }
+  
     }
   }
 </script>
 
-<style>
-  body {
-    font-family: Helvetica, sans-serif;
+<style scoped>
+  #loginForm .header {
+    align-items: center;
+    height: 30%;
   }
   
-  .container {
-    width: 500px;
+  #loginForm .container {
+    height: 70%;
   }
   
-  .error {
-    color: #a94442;
+  #loginForm .inputWrap {
+    height: 30%;
   }
   
-  h1 {
-    text-align: center
+  .errorToastr {
+    background-color: #a94442;
+    line-height: 2em;
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   }
   
-  img {
-    text-align: center
+  @-webkit-keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
   }
   
-  .submitted {
-    color: #4fc08d;
-  }
-  
-  input {
-    outline: 0;
-    border-width: 0 0 0.1em;
-    border-color: #dcd9d9
-  }
-  
-  input:focus {
-    border-color: #b5b5b5
-  }
-  
-  .fa-envelope {
-    color: black;
-    font-size: 0.5em;
-  }
-  
-  .fa-envelope:before {
-    content: "\f0e0";
+  @keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
   }
 </style>

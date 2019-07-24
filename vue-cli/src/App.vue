@@ -2,7 +2,7 @@
   <div id="app">
     <home-page v-if="!openLoginPage && !openRegisterPage && !openBrowseRestaurants && !openProfilePage"></home-page>
     <login-page v-if="showLogin" @user-data="userData"></login-page>
-    <register-page v-if="showRegister" :userObj="userObj"></register-page>
+    <register-page v-if="showRegister" :userObj="userObj" @edit-user="userEdit"></register-page>
     <browse-restaurants v-if="openBrowseRestaurants"></browse-restaurants>
     <profile-page v-if="openProfilePage" :userObj="userObj"></profile-page>
   </div>
@@ -14,45 +14,54 @@
   import registerPage from "./components/RegisterPage";
   import browseRestaurants from "./components/BrowserRestaurants";
   import profilePage from "./components/ProfilePage";
-
-  import {mapState} from "vuex";
-
+  
+  import {
+    mapState
+  } from "vuex";
+  
   export default {
     name: 'app',
     data() {
       return {
-           userObj: {}
-
+        userObj: {}
       }
-      
+  
     },
-     computed: {
+    computed: {
       ...mapState({
         openLoginPage: state => state.openLoginPage,
         openRegisterPage: state => state.openRegisterPage,
         openBrowseRestaurants: state => state.openBrowseRestaurants,
         openProfilePage: state => state.openProfilePage,
       }),
-      showLogin(){
-        if(this.openLoginPage && !this.openBrowseRestaurants && !this.openProfilePage){
+  
+      showLogin() {
+        if (this.openLoginPage && !this.openBrowseRestaurants && !this.openProfilePage) {
           return true;
-        }return false;
+        }
+        return false;
       },
-      showRegister(){
-        if(this.openRegisterPage && !this.openBrowseRestaurants && !this.openProfilePage && !this.openLoginPage){
-     
+  
+      showRegister() {
+        if (this.openRegisterPage && !this.openBrowseRestaurants && !this.openProfilePage && !this.openLoginPage) {
+  
           return true
         }
-    
+  
         return false;
       }
     },
-    methods:{
-      userData(user){
-        this.userObj= user;
-        console.log(this.userObj.userEmail);
+  
+    methods: {
+      userData(user) {
+        this.userObj = user;
+      },
+  
+      userEdit(user) {
+        this.userObj = user;
       }
     },
+  
     components: {
       loginPage,
       registerPage,
@@ -68,61 +77,133 @@
     font-family: 'Lato', sans-serif;
     text-align: center;
     color: #fff;
-    width: 25em;
-    height: 40em;
-    box-shadow: 0 0 1em grey;
-    margin: 1em auto;
     display: flex;
-    flex-flow: column wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 540px;
+    max-height: 780px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .7);
+  }
+  
+  #app>div {
+    width: 100%;
+    position: relative;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    height: 75%;
+  }
+  
+  .header {
     background: #2196f3;
-        position: relative;
-
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    height: 25%;
   }
-  h1{
+  
+  h1 {
     font-family: 'Pacifico', cursive;
-        font-size: 4em;
+    font-size: 4.7em;
+    font-weight: normal;
   }
-  h2{
+  
+  h2 {
     color: #2196f3;
+    font-weight: normal;
+    font-size: 2em;
+    padding-top: 1em;
   }
-  .btn{
-    border-radius: 0.2em;
-    width: 70%;
-    padding: 0.8em 0;
-    margin: 0.5em;   
+  
+  h3 {
+    line-height: 4.6em;
+  }
+  
+  .arrowBack {
+    position: absolute;
+    left: 2em;
+    top: 2.1em;
     cursor: pointer;
   }
-  .wrapBtn{
-   display: flex;
+  
+  input {
+    outline: 0;
+    border-width: 0;
+  }
+  
+  .inputWrap {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  
+  .input {
+    border-bottom: 1px solid #b5b5b5;
+    text-align: left;
+    line-height: 2em;
+    line-height: 2.5em;
+    color: #b5b5b5;
+  }
+  
+  .far,
+  .fas {
+    margin-right: 0.6em;
+  }
+  
+  .error,
+  .is-danger {
+    color: #a94442;
+    text-align: left;
+  }
+  
+  .btn {
+    border-radius: 0.2em;
+    width: 100%;
+    padding: 1em 0;
+    margin: 0.5em 0;
+    cursor: pointer;
+  }
+  
+  .wrapBtn {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 2em;
   }
-  .whiteBtn{
+  
+  .whiteBtn {
     color: #2196f3;
     background-color: #fff;
     border: 0.5px solid #2196f3;
-
   }
-  .blueBtn{
-    color: #fff;
-    background-color: #2196f3; 
-    border:0.5px solid #fff;
-  }
-  .redBtn{
-    color: #fff;
-    background-color: #f44336; 
-  }
-  form{
-    background: #fff;
-  }
-  .arrowBack{
-    position: absolute;
-    left: 2em;
-    top: 2em;
-    cursor: pointer;
-  }
- 
-
   
+  .whiteBtn:hover {
+    background-color: #ddecf9;
+  }
+  
+  .blueBtn {
+    color: #fff;
+    background-color: #2196f3;
+    border: 0.5px solid #fff;
+  }
+  
+  .blueBtn:hover {
+    background-color: #0079d8;
+  }
+  
+  .redBtn {
+    color: #fff;
+    background-color: #f44336;
+  }
+  
+  .redBtn:hover {
+    background-color: #f51403;
+  }
 </style>
