@@ -1,8 +1,9 @@
 <template>
     <div id="browseRestaurants">
         <div class="header">
-            <div class="profileIcon" @click="editBtn()"><i class="far fa-user"></i></div>
+    
             <h3>Browse Restaurants</h3>
+            <div class="profileIcon" @click="editBtn()"><i class="far fa-user"></i></div>
         </div>
         <div class="container">
     
@@ -111,8 +112,8 @@
     
     .profileIcon {
         position: absolute;
-        right: 1em;
-        top: 1.9em;
+        right: 5%;
+        top: 3.8%;
         cursor: pointer;
     }
     
