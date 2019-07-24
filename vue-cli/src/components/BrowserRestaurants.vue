@@ -112,7 +112,7 @@
     .profileIcon {
         position: absolute;
         right: 1em;
-        top: 1.8em;
+        top: 1.9em;
         cursor: pointer;
     }
     
@@ -149,6 +149,7 @@
     
     .restName {
         font-size: 1.5em;
+        line-height: 1.5em;
     }
     
     .infoStr {

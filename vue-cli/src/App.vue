@@ -122,7 +122,9 @@
   }
   
   h3 {
-    line-height: 4.6em;
+    line-height: 3.6em;
+    font-weight: normal;
+    font-size: 1.5em;
   }
   
   .arrowBack {
@@ -135,6 +137,7 @@
   input {
     outline: 0;
     border-width: 0;
+    font-size: 1.2em;
   }
   
   .inputWrap {
@@ -168,7 +171,9 @@
     padding: 1em 0;
     margin: 0.5em 0;
     cursor: pointer;
+    font-weight: bold;
     transform: scale(1);
+    font-size: 1.2em;
   }
   
   .wrapBtn {
@@ -187,8 +192,7 @@
   
   .whiteBtn:hover {
     background-color: #ddecf9;
-        transform: scale(0.95);
-
+    transform: scale(0.95);
   }
   
   .blueBtn {
@@ -199,8 +203,7 @@
   
   .blueBtn:hover {
     background-color: #0079d8;
-            transform: scale(0.95);
-
+    transform: scale(0.95);
   }
   
   .redBtn {
@@ -210,7 +213,6 @@
   
   .redBtn:hover {
     background-color: #f51403;
-            transform: scale(0.95);
-
+    transform: scale(0.95);
   }
 </style>

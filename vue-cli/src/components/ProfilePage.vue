@@ -79,6 +79,7 @@
     
     .profileData span {
         color: #1e1e1e;
+        font-size: 1.3em;
     }
 </style>
 
