@@ -128,7 +128,7 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid #b5b5b5;
-        padding: 0 10%;
+        padding: 0 5%;
         justify-content: space-between;
         text-align: left;
         height: 14%;
